@@ -19,9 +19,9 @@ module.exports = {
         description: 'Auth Route',
         notes: 'User Login Route that returns a valid JTW',
         handler: async (request, h) => {
-          const { email, password } = request.payload
+          const { email } = request.payload
 
-          return await service.create({ email, password })
+          return await service.create({ email })
         },
       },
     })

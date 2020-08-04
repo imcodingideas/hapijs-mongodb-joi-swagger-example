@@ -41,20 +41,21 @@ async function loadPlugins(server) {
     require('./app.config')
   ]
 
-  // Register strategy
-  
-  // await server.auth.strategy('jwt', 'jwt', {
-  //   key: secret,
-  //   validate,
-  //   verifyOptions: { ignoreExpiration: true },
-  // })
+  await server.register(appPlugins)
 
-  // await server.auth.default('jwt')
+  // Register strategy
+  server.auth.strategy('jwt', 'jwt', {
+    key: secret,
+    validate,
+    verifyOptions: { ignoreExpiration: true },
+  })
+
+  server.auth.default('jwt')
 
   // Register routes
   const routes = getRoutes()
 
-  await server.register(appPlugins.concat(routes))
+  await server.register(routes)
 }
 
 exports.isInit = false

@@ -1,7 +1,6 @@
 const Hapi = require('@hapi/hapi')
 const Inert = require('@hapi/inert')
 const Vision = require('@hapi/vision')
-const jtw = require('jsonwebtoken')
 const hapiAuthJWT = require('hapi-auth-jwt2')
 const HapiSwaggerPlugin = require('./swagger')
 const config = require('../config')

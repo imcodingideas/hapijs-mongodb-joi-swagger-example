@@ -12,12 +12,11 @@ module.exports = {
         description: 'Protected route',
         notes: 'Protected route that is protected by by the jwt strategy.',
         handler: async (request, h) => {
-          console.log(h)
-          return null
-
-          // return h.response({
-          //   text: 'You used a Token!'
-          // })
+          console.log(request.headers)
+          return h.response({
+            text: 'You need to use a Token!',
+            headers: request.headers
+          })
         },
       },
     })

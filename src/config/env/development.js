@@ -1,5 +1,5 @@
 const config = {
-  host: '0.0.0.0',
+  host: 'localhost',
   port: '3000',
   jwtSecret: 'hapi'
 }

@@ -7,7 +7,7 @@ const config = require('../config')
 const { validate } = require('../common/util')
 const { getRoutes } = require('./routes')
 
-const { host, port, secret } = config
+const { host, port, jwtSecret } = config
 
 const server = Hapi.server({
   port,
@@ -27,9 +27,9 @@ async function loadPlugins(server) {
 
   // Register strategy
   server.auth.strategy('jwt', 'jwt', {
-    key: secret,
     validate,
-    verifyOptions: { ignoreExpiration: true },
+    key: jwtSecret,
+    verifyOptions: { algorithms: ['HS256'] },
   })
 
   server.auth.default('jwt')

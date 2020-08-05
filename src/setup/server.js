@@ -5,26 +5,10 @@ const jtw = require('jsonwebtoken')
 const hapiAuthJWT = require('hapi-auth-jwt2')
 const HapiSwaggerPlugin = require('./swagger')
 const config = require('../config')
+const { validate } = require('../common/util')
 const { getRoutes } = require('./routes')
 
 const { host, port, secret } = config
-
-const people = {
-  // our 'users database'
-  56732: {
-    id: 56732,
-    name: 'Jen Jones',
-    scope: ['a', 'b']
-  }
-};
-
-const validate = async function (decoded, request, h) {
-  if (!people[decoded.id]) {
-    return { isValid: false }
-  } else {
-    return { isValid: true }
-  }
-}
 
 const server = Hapi.server({
   port,
@@ -32,7 +16,6 @@ const server = Hapi.server({
 })
 
 async function loadPlugins(server) {
-  // Register JWT plugin
   const appPlugins = [
     hapiAuthJWT,
     Inert,

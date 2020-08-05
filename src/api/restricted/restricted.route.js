@@ -6,16 +6,14 @@ module.exports = {
       method: 'GET',
       path: '/api/v1/restricted',
       config: {
-        auth: false,
-        // auth: 'jwt',
+        auth: 'jwt',
         tags: ['api', 'Restricted'],
         description: 'Protected route',
         notes: 'Protected route that is protected by by the jwt strategy.',
         handler: async (request, h) => {
-          console.log(request.headers)
           return h.response({
-            text: 'You need to use a Token!',
-            headers: request.headers
+            text: 'You used the token!',
+            token: `${request.headers.authorization}`
           })
         },
       },

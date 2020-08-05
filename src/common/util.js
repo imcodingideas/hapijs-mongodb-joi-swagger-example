@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken')
+const Boom = require('@hapi/boom')
 const { jwtSecret } = require('../config')
 
 exports.generateToken = (user) => {
@@ -9,20 +10,24 @@ exports.generateToken = (user) => {
   })
 }
 
-exports.validate = async token => {
+exports.validate = (decoded, request) => {
   try {
+    const { token } = request.auth
+
     if (typeof token !== 'string') {
       return { isValid: false }
     }
 
-    const decoded = await jwt.verify(token, jwtSecret)
-    if(!decoded) return { isValid: false }
+    // jwt.verify is not async 
+    return jwt.verify(token, jwtSecret, function(err, decoded) {
+      if(!decoded) return { isValid: false }
 
-    return {
-      isValid: true
-    }
+      return {
+        isValid: true
+      }
+    })
 
   } catch (err) {
-    return { isValid: false }
+    return Boom.unauthorized('Authentication failed');
   }
 }

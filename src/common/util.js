@@ -10,16 +10,19 @@ exports.generateToken = (user) => {
 }
 
 exports.validate = async token => {
-  if (typeof token !== 'string') {
-    return { isValid: false }
-  }
-
-  return await jwt.verify(token, jwtSecret, async function (err, decoded) {
-    if (err) {
+  try {
+    if (typeof token !== 'string') {
       return { isValid: false }
     }
 
-    return { isValid: true, decoded }
-  })
+    const decoded = await jwt.verify(token, jwtSecret)
+    if(!decoded) return { isValid: false }
 
+    return {
+      isValid: true
+    }
+
+  } catch (err) {
+    return { isValid: false }
+  }
 }

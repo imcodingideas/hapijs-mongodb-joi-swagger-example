@@ -17,6 +17,7 @@ const swaggerOptions = {
       in: 'header',
     },
   },
+  security: [{ jwt: [] }]
 }
 
 module.exports = {

@@ -7,7 +7,7 @@ const mongoSetup = {
   version: '1.0.0',
   async register(server, options, next) {
     const {
-      dbConfig: { url},
+      dbConfig: { url },
     } = config
 
     const db = loadModels()
@@ -16,7 +16,8 @@ const mongoSetup = {
     mongoose.Promise = global.Promise
     await mongoose.connect(url, {
       useCreateIndex: true,
-      useNewUrlParser: true
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
     })
 
     server.decorate('server', 'db', db)

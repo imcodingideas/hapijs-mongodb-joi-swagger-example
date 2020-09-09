@@ -6,6 +6,7 @@ const HapiSwaggerPlugin = require('./swagger')
 const config = require('../config')
 const { validate } = require('../common/util')
 const { getRoutes } = require('./routes')
+const DB = require('./mongo')
 
 const { host, port, jwtSecret } = config
 
@@ -14,13 +15,15 @@ const server = Hapi.server({
   host,
 })
 
+
 async function loadPlugins(server) {
   const appPlugins = [
     hapiAuthJWT,
     Inert,
     Vision,
     HapiSwaggerPlugin,
-    require('./app.config')
+    DB,
+    require('./app.config'),
   ]
 
   await server.register(appPlugins)

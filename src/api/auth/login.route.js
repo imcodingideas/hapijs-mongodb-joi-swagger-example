@@ -17,7 +17,7 @@ module.exports = {
         },
         auth: false,
         description: 'Auth Route',
-        notes: 'User Login Route that returns a valid JTW',
+        notes: 'User Login Route that returns a valid JWT',
         handler: async (request, h) => {
           const { email } = request.payload
 

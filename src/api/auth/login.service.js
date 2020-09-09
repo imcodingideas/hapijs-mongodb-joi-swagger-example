@@ -4,7 +4,7 @@ class LoginService {
   async create({ email }) {
     const user = {
       _id: 1,
-      email
+      email,
     }
 
     const token = generateToken(user)

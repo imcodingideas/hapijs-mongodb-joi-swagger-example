@@ -3,7 +3,7 @@ const config = {
   port: '3000',
   jwtSecret: 'hapi',
   dbConfig: {
-    url: ''
+    url: 'mongodb://localhost:27017/example'
   }
 }
 

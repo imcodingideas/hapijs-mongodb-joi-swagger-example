@@ -1,7 +1,7 @@
 const mongoose = require('mongoose')
 const joiPostSchemma = require('./post.schema')
 const Joigoose = require('joigoose')(mongoose)
-        
+
 const { Schema } = mongoose
 mongoose.Promise = global.Promise
 

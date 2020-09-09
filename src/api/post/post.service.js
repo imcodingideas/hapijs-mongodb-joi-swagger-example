@@ -17,20 +17,18 @@ class PostService {
     return post
   }
 
-  async addPost(post) {
+  async create(post) {
     const postSchema = new this.postSchema(post)
     const postSaved = await postSchema.save()
 
     return postSaved
   }
 
-  async deletePost(id) {
-    const deletedPost = await this.postSchema.findByIdAndDelete(id)
-
-    return deletedPost
+  async delete(id) {
+    return await this.postSchema.findByIdAndDelete(id)
   }
 
-  async updatePost(id, post) {
+  async update(id, post) {
     const updatedPost = await this.postSchema.findByIdAndUpdate(id, post, {
       new: true,
     })

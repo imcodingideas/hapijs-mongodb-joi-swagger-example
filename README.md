@@ -1,4 +1,4 @@
-## Hapijs with Swagger and JWT Example
+## Hapijs, MongoDb, Swagger and JWT Example
 
 ```
 npm i

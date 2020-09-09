@@ -1,8 +1,8 @@
 const Boom = require('@hapi/boom')
 
 class PostService {
-  constructor(campaignModel) {
-    if (!campaignModel) {
+  constructor(postSchema) {
+    if (!postSchema) {
       const errorMessage = 'PostService is missing db dependency!'
       console.trace(errorMessage)
 

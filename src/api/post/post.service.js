@@ -17,6 +17,10 @@ class PostService {
     return post
   }
 
+  async listOneById(id) {
+    return await this.postSchema.findById(id)
+  }
+
   async create(post) {
     const postSchema = new this.postSchema(post)
     const postSaved = await postSchema.save()
